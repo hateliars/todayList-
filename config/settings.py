@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'memberDB',
-        'USER' : 'root',
-        'PASSWORD' : '1234',
-        'HOST' : 'localhost',
-        'PORT' : '3306',
+        'NAME': '-',
+        'USER' : '-',
+        'PASSWORD' : '-',
+        'HOST' : '-',
+        'PORT' : '-',
     }
 }
 
