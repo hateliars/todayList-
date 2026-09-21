@@ -1,0 +1,44 @@
+{% block content %}
+ <h1>회원 목록</h1>
+    <p><a href="{% url 'members:insert_form' %}">+ 새 회원 등록</a></p>
+
+    <table border="1" cellpadding="6" cellspacing="0">
+        <tr>
+            <th>ID</th>
+            <th>아이디</th>
+            <th>이메일</th>
+            <th>생년월일</th>
+            <th>나이</th>
+            <th>포인트</th>
+            <th>키(cm)</th>
+            <th>가입일시</th>
+            <th>수정일시</th>
+            <th>관리</th>
+        </tr>
+        {% for m in members %}
+        <tr>
+            <td><a href="">{{ m.id }}</a></td>
+            <td>{{ m.username }}</td>
+            <td>{{ m.email }}</td>
+            <td>{{ m.birth_date|default_if_none:"-" }}</td>
+            <td>{{ m.age|default_if_none:"-" }}</td>
+            <td>{{ m.points }}</td>
+            <td>{{ m.height|default_if_none:"-" }}</td>
+            <td>{{ m.created_at|default_if_none:"-" }}</td>
+            <td>{{ m.updated_at|default_if_none:"-" }}</td>
+            <td>
+                <a href="">상세</a>
+                <a href="">수정</a>
+                <form action="{% url 'members:delete' m.id %}" method="post" style="display:inline">
+                    {% csrf_token %}
+                    <button type="submit" onclick="return confirm('삭제하시겠습니까?')">삭제</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="10">등록된 회원이 없습니다.</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% block content %}
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* 입력창 사이 간격 */
+        max-width: 300px; /* 폼 전체 너비 제한 */
+    }
+</style>
+<h1>회원 정보 입력 폼</h1>
+<form method="POST" action="{% url 'members:insert' %}">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="사용자명 (아이디)" value="{{ username|default:'honggildong' }}" required>
+    <input type="email" name="email" placeholder="이메일 (example@domain.com)" value="{{ email|default:'hong@example.com' }}" required>
+    <input type="datetime-local" name="birth_date" step="1" value="{{ birth_date|default:'2000-01-01T00:00:00' }}">
+    <input type="number" name="age" placeholder="나이" min="0" max="255" value="{{ age|default:'25' }}">
+    <input type="number" name="points" placeholder="포인트" value="{{ points|default:'100' }}">
+    <input type="number" step="0.01" name="height" placeholder="키 (cm)" value="{{ height|default:'178.50' }}">
+    <textarea name="bio" rows="4" placeholder="자기소개">{{ bio|default:'안녕하세요. 반갑습니다!' }}</textarea>
+    <button type="submit">등록하기</button>
+</form>
+{% endblock %}

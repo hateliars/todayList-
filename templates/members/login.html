@@ -1,0 +1,147 @@
+{% block content %}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background-color: #f5f6f8;
+        font-family: Arial, sans-serif;
+    }
+
+    .login-container {
+        width: 380px;
+        margin: 120px auto;
+        padding: 40px;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .login-container h1 {
+        margin: 0 0 30px;
+        text-align: center;
+        font-size: 28px;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+    .input-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .input-group input {
+        width: 100%;
+        height: 45px;
+        padding: 0 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .input-group input:focus {
+        outline: none;
+        border-color: #333;
+    }
+
+    .login-button {
+        width: 100%;
+        height: 45px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #333;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .login-button:hover {
+        background-color: #222;
+    }
+
+    .signup-area {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        text-align: center;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .signup-area a {
+        margin-left: 5px;
+        color: #333;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .signup-area a:hover {
+        text-decoration: underline;
+    }
+
+    .error-message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #f5b5b5;
+    border-radius: 5px;
+    background-color: #fff0f0;
+    color: #d33;
+    font-size: 14px;
+    text-align: center;
+    }
+</style>
+
+<div class="login-container">
+
+    <h1>로그인</h1>
+
+    <form method="post" action="/member/login/">
+
+        {% csrf_token %}
+
+            {% if error %}
+            <div class="error-message">
+            {{ error }}
+            </div>
+    {% endif %}
+
+        <div class="input-group">
+            <label for="username">아이디</label>
+            <input type="text"
+                   id="username"
+                   name="username"
+                   placeholder="아이디를 입력하세요"
+                   required>
+        </div>
+
+        <div class="input-group">
+            <label for="password">비밀번호</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   placeholder="비밀번호를 입력하세요"
+                   required>
+        </div>
+
+        <button type="submit" class="login-button">
+            로그인
+        </button>
+
+    </form>
+
+    <div class="signup-area">
+        아직 회원이 아니신가요?
+        <a href="/member/register/">회원가입</a>
+    </div>
+
+</div>
+
+{% endblock %}

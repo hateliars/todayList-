@@ -1,0 +1,17 @@
+{% block content %}
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* 입력창 사이 간격 */
+        max-width: 300px; /* 폼 전체 너비 제한 */
+    }
+</style>
+<h1>회원 정보 삭제 폼</h1>
+<form method="POST" action="{% url 'members:delete' %}">
+    {% csrf_token %}
+    <p>삭제할 고유 id를 입력하고 제출하기를 누르십시오.</p>
+    <input type="number" name="id" placeholder="회원 번호" value="{{ id|default:'0' }}">
+    <button type="submit">제출하기</button>
+</form>
+{% endblock %}

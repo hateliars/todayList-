@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="{% url 'members:home' %}">홈</a>
+            <a href="{% url 'members:insert_form' %}">insert</a>
+            <a href="{% url 'members:list' %}">select</a>
+            <a href="{% url 'members:delete_form' %}">delete</a>
+            <a href="{% url 'members:update_form' %}">update</a>
+        </nav>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
