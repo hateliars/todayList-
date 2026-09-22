@@ -29,10 +29,6 @@ def insert(request):
 
         if birth_date:
             birth_date = birth_date.replace("T", " ")
-        # sql = """INSERT INTO members (username,email,birth_date,age,points,height,bio)
-        #          VALUES (%s,%s,'2026-09-17',35,1200,187.4,'집에 가고싶네요.')"""
-        # with connection.cursor() as cursor : 
-        #   cursor.execute(sql, [username,email,birth_date,age,points,height,bio])
         sql = """INSERT INTO members (username,password, email, birth_date, age, points, height, bio)
                  VALUES (%s,%s, %s, %s, %s, %s, %s, %s)"""
         
@@ -215,21 +211,11 @@ def mypageDelete(request):
 
     if request.method == "POST":
 
-        # 해당 회원의 Todo 삭제
-        todo_sql = """
-            DELETE FROM todos
-            WHERE memberId = %s
-        """
 
         # 회원 삭제
-        member_sql = """
-            DELETE FROM members
-            WHERE id = %s
-        """
+        member_sql = """DELETE FROM membersWHERE id = %s"""
 
         with connection.cursor() as cursor:
-
-            cursor.execute(todo_sql, [member_id])
 
             cursor.execute(member_sql, [member_id])
 

@@ -3,19 +3,6 @@ from django.db import connection
 from datetime import datetime
 
 
-def isUrgent(endDate, completed):
-
-    if not endDate or completed:
-        return False
-
-    now = datetime.now()
-    remaining = endDate - now
-
-    if 0 < remaining.total_seconds() <= 86400:
-        return True
-
-    return False
-
 # Create your views here.
 
 def todo(request):

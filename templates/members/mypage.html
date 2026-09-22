@@ -100,6 +100,7 @@
         background-color: #d00;
         color: white;
         cursor: pointer;
+        margin-top : 10px;
     }
 </style>
 
@@ -181,7 +182,7 @@
             onsubmit="return deleteMember();">
 
             {% csrf_token %}
-
+            
             <button type="submit" class="delete-button">
                 회원탈퇴
             </button>
